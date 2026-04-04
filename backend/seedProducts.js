@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Product = require('./models/Product'); // Ajusta la ruta a tu modelo
 
 // 🔗 CAMBIA ESTO por tu cadena de conexión real de MongoDB
-const MONGO_URI = 'mongodb://localhost:27017/tu_base_de_datos'; 
+const MONGO_URI = 'mongodb://localhost:27017/tech_store_db'; 
 
 const products = [
   {
