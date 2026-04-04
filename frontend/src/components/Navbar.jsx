@@ -78,7 +78,7 @@ const Navbar = () => {
           <div className="ts-account-zone" onMouseEnter={() => setShowDropdown(true)} onMouseLeave={() => setShowDropdown(false)}>
             <div className="ts-user-trigger">
               <div className="ts-user-text">
-                <span className="ts-user-greet">Hola, {user ? user.fullname.split(' ')[0] : 'Invitado'}</span>
+                <span className="ts-user-greet">Hola, {user ? user.fullname?.split(' ')[0] : 'Invitado'}</span>
                 <span className="ts-user-title">Mi Cuenta ▾</span>
               </div>
             </div>
