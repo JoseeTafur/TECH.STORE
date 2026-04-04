@@ -1,0 +1,24 @@
+.um-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(8px); display: flex; justify-content: center; align-items: center; z-index: 10000; animation: fadeIn 0.2s; }
+.um-card { background: white; width: 100%; max-width: 440px; border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3); overflow: hidden; animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+
+.um-header { padding: 1.5rem 2rem; background: #0f172a; color: white; display: flex; justify-content: space-between; align-items: center; }
+.header-info { display: flex; align-items: center; gap: 12px; }
+.user-icon { font-size: 1.2rem; background: rgba(255,255,255,0.1); padding: 8px; border-radius: 10px; }
+.um-header h2 { font-size: 1.1rem; font-weight: 700; margin: 0; }
+.um-close { background: none; border: none; color: white; font-size: 1.8rem; cursor: pointer; transition: 0.2s; }
+.um-close:hover { color: #ef4444; transform: rotate(90deg); }
+
+.um-body { padding: 2rem; }
+.um-group { margin-bottom: 1.2rem; display: flex; flex-direction: column; gap: 8px; }
+.um-group label { font-size: 0.75rem; font-weight: 800; color: #475569; text-transform: uppercase; letter-spacing: 0.025em; }
+.um-input { padding: 0.9rem; border: 1.5px solid #e2e8f0; border-radius: 12px; font-size: 1rem; color: #1e293b; transition: 0.2s; }
+.um-input:focus { outline: none; border-color: #4f46e5; box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1); }
+
+.um-footer { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #f1f5f9; display: flex; justify-content: flex-end; gap: 12px; }
+.um-btn-alt { background: #f1f5f9; color: #475569; border: none; padding: 0.8rem 1.5rem; border-radius: 12px; font-weight: 600; cursor: pointer; transition: 0.2s; }
+.um-btn-alt:hover { background: #e2e8f0; }
+.um-btn-main { background: #4f46e5; color: white; border: none; padding: 0.8rem 2rem; border-radius: 12px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.3); transition: 0.2s; }
+.um-btn-main:hover { background: #4338ca; transform: translateY(-1px); }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }

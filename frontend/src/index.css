@@ -1,0 +1,42 @@
+/* src/index.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* RESET GLOBAL */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%; /* Permite que el body sea tan alto como el contenido */
+  overflow-x: hidden; /* Evita que la página baile de lado a lado */
+  overflow-y: auto;   /* Habilita el scroll vertical explícitamente */
+  background-color: #f3f4f6; /* Color de fondo base */
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilo para el contenedor del Layout */
+.shop-layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.shop-main-content {
+  flex: 1; /* Ocupa el espacio restante */
+  width: 100%;
+  /* No pongas height ni overflow aquí para dejar que el scroll sea global */
+}
+
+a {
+  text-decoration: none;
+}

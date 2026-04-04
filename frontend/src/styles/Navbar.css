@@ -1,0 +1,231 @@
+/* --- Estructura Principal del Navbar --- */
+.ts-navbar {
+  background-color: #0f172a;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  color: white;
+}
+
+.ts-nav-container {
+  width: 95%;
+  max-width: 1500px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 280px 1fr 320px;
+  align-items: center;
+  gap: 20px;
+}
+
+/* --- Identidad y Menú (Izquierda) --- */
+.ts-logo {
+  font-size: 22px;
+  font-weight: 800;
+  color: #3b82f6;
+  text-decoration: none;
+  letter-spacing: -1px;
+}
+.ts-logo span { color: white; }
+
+.ts-categories-trigger {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 6px;
+  margin-left: 15px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* --- Buscador Central --- */
+.ts-nav-center { width: 100%; }
+
+.ts-search-form {
+  position: relative;
+  width: 100%;
+}
+
+.ts-search-form input {
+  width: 100%;
+  padding: 12px 25px;
+  border-radius: 30px;
+  border: none;
+  background: white;
+  font-size: 14px;
+  outline: none;
+}
+
+.ts-search-btn {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  bottom: 5px;
+  background: #1e293b;
+  border: none;
+  color: white;
+  width: 45px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* --- Acciones (Derecha) --- */
+.ts-nav-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 25px;
+}
+
+.ts-user-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.ts-user-greet { font-size: 11px; color: #94a3b8; }
+.ts-user-title { font-size: 14px; font-weight: 600; }
+
+.ts-nav-icon {
+  text-decoration: none;
+  font-size: 22px;
+  color: white;
+  position: relative;
+}
+
+/* --- Badge del Carrito (Unificado) --- */
+.ts-badge-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: #ef4444; 
+  font-size: 10px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid #0f172a;
+  color: white;
+  font-weight: bold;
+  animation: badgePop 0.3s ease-out;
+}
+
+@keyframes badgePop {
+  0% { transform: scale(0.5); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* --- DROPDOWN MENU (Integración Premium) --- */
+.ts-dropdown-menu {
+  position: absolute;
+  /* Bajamos el menú para que no tape el Navbar, pero creamos el puente */
+  top: calc(100% + 10px); 
+  right: 0;
+  background: #ffffff;
+  min-width: 240px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  padding: 8px;
+  z-index: 1100;
+  border: 1px solid #e2e8f0;
+  animation: tsDropdownShow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ts-dropdown-menu::after {
+  content: '';
+  position: absolute;
+  top: -20px; /* Se extiende hacia arriba para tocar el Navbar */
+  left: 0;
+  right: 0;
+  height: 25px; /* Crea un área de contacto invisible */
+  background: transparent; /* Nadie lo ve, pero mantiene el hover activo */
+}
+
+.ts-dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  right: 25px;
+  width: 12px;
+  height: 12px;
+  background: #ffffff;
+  transform: rotate(45deg);
+  border-left: 1px solid #e2e8f0;
+  border-top: 1px solid #e2e8f0;
+  z-index: 1; 
+}
+
+.ts-dropdown-menu a, 
+.ts-dropdown-menu button {
+  position: relative;
+  z-index: 2; /* Por encima del puente */
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 16px;
+  text-decoration: none;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.ts-dropdown-menu a:hover, 
+.ts-dropdown-menu button:hover {
+  background: #f1f5f9;
+  color: #3b82f6;
+  padding-left: 20px;
+}
+
+.ts-dropdown-menu hr {
+  margin: 6px 0;
+  border: 0;
+  border-top: 1px solid #f1f5f9;
+}
+
+.ts-logout-btn {
+  color: #ef4444 !important;
+}
+
+.ts-logout-btn:hover {
+  background: #fef2f2 !important;
+}
+
+.ts-guest-box {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ts-btn-login-drop {
+  background: #3b82f6 !important;
+  color: #ffffff !important;
+  justify-content: center;
+}
+
+.ts-link-reg {
+  font-size: 13px !important;
+  color: #64748b !important;
+  justify-content: center;
+}
+
+@keyframes tsDropdownShow {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}

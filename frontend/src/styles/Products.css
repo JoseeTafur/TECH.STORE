@@ -1,0 +1,200 @@
+.catalog-wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.catalog-content {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 40px;
+}
+
+/* SIDEBAR STYLING */
+.catalog-sidebar {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+}
+
+.sidebar-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.sidebar-top h3 { font-size: 20px; color: #0f172a; }
+
+.btn-clear-all {
+  background: none; border: none; color: #3b82f6; font-weight: 700; cursor: pointer; font-size: 13px;
+}
+
+.filter-block { margin-bottom: 30px; }
+.filter-block h4 { font-size: 13px; text-transform: uppercase; color: #94a3b8; margin-bottom: 15px; letter-spacing: 1px; }
+
+/* ÁREA DE SCROLL PARA "INFINITAS" MARCAS */
+.filter-scroll-area {
+  max-height: 250px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+/* Estilo de la barra de scroll */
+.filter-scroll-area::-webkit-scrollbar { width: 5px; }
+.filter-scroll-area::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 4px;
+  transition: 0.2s;
+}
+
+.filter-option:hover { background: #f8fafc; }
+.filter-option.active { background: #eff6ff; color: #1d4ed8; font-weight: 600; }
+
+.filter-option input { display: none; }
+
+.check-custom {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #cbd5e1;
+  border-radius: 4px;
+  position: relative;
+}
+
+.filter-option.active .check-custom {
+  background: #3b82f6;
+  border-color: #3b82f6;
+}
+
+/* GRILLA DE PRODUCTOS */
+.tech-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.tech-item-card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #f1f5f9;
+  transition: 0.3s;
+}
+
+.tech-item-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+
+.item-img-container {
+  height: 240px;
+  padding: 25px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-img-container img { max-height: 100%; object-fit: contain; }
+
+.item-category-pill {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(15, 23, 42, 0.05);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 800;
+  color: #64748b;
+}
+
+.item-info-container { padding: 20px; border-top: 1px solid #f8fafc; }
+.item-brand-label { font-size: 11px; color: #3b82f6; font-weight: 700; text-transform: uppercase; }
+.item-name { font-size: 16px; color: #1e293b; margin: 5px 0 15px; height: 44px; overflow: hidden; line-height: 1.4; }
+
+.item-price-box { margin-bottom: 20px; }
+.item-price-box .currency { font-size: 14px; font-weight: 600; margin-right: 4px; }
+.item-price-box .amount { font-size: 26px; font-weight: 900; color: #0f172a; }
+
+.btn-buy-now {
+  width: 100%;
+  padding: 12px;
+  background: #0f172a;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-buy-now:hover { background: #3b82f6; }
+
+.auth-toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  background: #1f2937;
+  color: #fff;
+
+  padding: 14px 18px;
+  border-radius: 10px;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+  min-width: 280px;
+  max-width: 350px;
+
+  animation: slideIn 0.3s ease;
+  z-index: 9999;
+}
+
+/* Icono */
+.toast-icon {
+  font-size: 20px;
+}
+
+/* Contenido */
+.toast-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.toast-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.toast-sub {
+  font-size: 12px;
+  color: #9ca3af;
+  margin: 2px 0 0;
+}
+
+/* Animación */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

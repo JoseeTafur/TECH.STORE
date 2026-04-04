@@ -1,0 +1,53 @@
+.purchases-page {
+  padding: 40px 10%;
+  background: #f8fafc;
+  min-height: 90vh;
+}
+
+.purchases-container {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.purchases-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.purchases-table th {
+  text-align: left;
+  padding: 15px;
+  background: #f1f5f9;
+  color: #64748b;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.purchases-table td {
+  padding: 20px 15px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 14px;
+}
+
+.status-pill {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.status-pill.entregado { background: #dcfce7; color: #15803d; }
+.status-pill.en-camino { background: #fef9c3; color: #a16207; }
+
+.btn-track {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}

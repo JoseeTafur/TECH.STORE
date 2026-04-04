@@ -1,0 +1,114 @@
+/* Borra todo lo que tengas en index.css y pon esto */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  /* CRÍTICO: Permitir que el cuerpo crezca con el contenido */
+  min-height: 100%; 
+  overflow-x: hidden; /* Evita scroll horizontal */
+  overflow-y: auto;   /* Permite scroll vertical */
+  font-family: 'Inter', sans-serif;
+  scroll-behavior: smooth;
+}
+
+#root {
+  width: 100%;
+  /* No pongas height: 100vh aquí, deja que crezca solo */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Si tienes una clase llamada .container en App.jsx, cámbiala o bórrala */
+.admin-container {
+  display: flex;
+  width: 100vw; /* Viewport Width: 100% del ancho de la pantalla */
+  height: 100vh; /* Viewport Height: 100% del alto de la pantalla */
+  margin: 0;
+  padding: 0;
+  position: absolute; /* A veces ayuda a salir de contenedores padres */
+  top: 0;
+  left: 0;
+}
+
+.admin-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-header {
+  height: 70px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.admin-content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 250px;
+  background: #111827;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.sidebar-title {
+  padding: 25px 20px;
+  font-weight: bold;
+  font-size: 20px;
+  color: #3b82f6; /* Color tecnológico */
+}
+
+.sidebar a {
+  padding: 14px 20px;
+  color: #9ca3af;
+  text-decoration: none;
+  transition: 0.2s;
+  font-size: 15px;
+}
+
+.sidebar a:hover {
+  background: #1f2937;
+  color: white;
+  padding-left: 25px; /* Efecto sutil de movimiento */
+}
+
+/* TABLAS PROFESIONALES */
+.table-container {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: #f9fafb;
+  padding: 15px;
+  text-align: left;
+  color: #6b7280;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  color: #374151;
+  font-size: 14px;
+}
+

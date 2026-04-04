@@ -1,0 +1,130 @@
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: calc(100vh - 75px);
+  padding: 40px 20px;
+  box-sizing: border-box;
+  
+  /* --- CONFIGURACIÓN DE IMAGEN DE FONDO --- */
+  background-image: linear-gradient(
+      rgba(15, 23, 42, 0.7), /* Overlay Oscuro (Slate 900 con 70% opacidad) */
+      rgba(15, 23, 42, 0.8)
+    ), 
+    url('https://images.unsplash.com/photo-1547082299-de196ea013d6?q=80&w=2070&auto=format&fit=crop'); /* Imagen de Hardware/Setup */
+    
+  background-size: cover;      /* La imagen cubre toda la pantalla */
+  background-position: center; /* Centra la imagen */
+  background-attachment: fixed; /* Efecto Parallax (la imagen no se mueve al hacer scroll) */
+}
+
+/* --- Mejoramos el contraste del contenedor --- */
+.auth-container {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.98); /* Blanco casi opaco */
+  padding: 45px;
+  border-radius: 24px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); /* Sombra más fuerte por el fondo oscuro */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px); /* Efecto de desenfoque detrás del cuadro (Glassmorphism) */
+  animation: authSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.auth-header {
+  text-align: center; /* Centramos el texto del encabezado */
+}
+
+.auth-header h2 {
+  color: #0f172a;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin-bottom: 8px;
+}
+
+.auth-header p {
+  color: #64748b;
+  margin-bottom: 35px;
+  font-size: 15px;
+}
+
+/* --- Grupos de Input --- */
+.auth-group {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.auth-group label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  color: #475569;
+  padding-left: 4px;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 14px 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  background-color: #ffffff;
+  font-size: 15px;
+  color: #1e293b;
+  transition: all 0.2s ease-in-out;
+}
+
+.auth-input:focus {
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+
+/* --- Botón Principal --- */
+.auth-btn {
+  width: 100%;
+  background: #0f172a;
+  color: white;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.auth-btn:hover {
+  background: #1e293b;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.2);
+}
+
+.auth-footer {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.auth-link {
+  color: #3b82f6;
+  font-weight: 700;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+/* Animación de entrada */
+@keyframes authFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

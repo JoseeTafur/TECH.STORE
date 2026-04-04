@@ -1,0 +1,55 @@
+/* ProductViewModal.css */
+.pvm-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(12px);
+  display: flex; justify-content: center; align-items: center; z-index: 5000;
+}
+
+.pvm-card {
+  background: white;
+  width: 90%;
+  max-width: 950px;
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  animation: modalScale 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pvm-layout { display: grid; grid-template-columns: 1fr 1.2fr; width: 100%; }
+
+.pvm-visual { background: #f8fafc; padding: 4rem; display: flex; align-items: center; justify-content: center; border-right: 1px solid #f1f5f9; }
+.pvm-visual img { max-width: 100%; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1)); }
+
+.pvm-details { padding: 4rem; display: flex; flex-direction: column; gap: 1.5rem; }
+
+.pvm-brand { color: #6366f1; font-weight: 800; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; }
+.pvm-details h2 { font-size: 2.5rem; color: #0f172a; font-weight: 900; margin: 0; letter-spacing: -1px; }
+
+.pvm-specs-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  background: #f1f5f9; padding: 1.5rem; border-radius: 20px;
+}
+.spec-item { display: flex; flex-direction: column; gap: 4px; }
+.spec-label { font-size: 0.6rem; color: #64748b; font-weight: 800; text-transform: uppercase; }
+.spec-value { font-size: 0.9rem; color: #1e293b; font-weight: 600; }
+
+.pvm-action-bar {
+  margin-top: auto; display: flex; justify-content: space-between; align-items: center;
+  padding-top: 2rem; border-top: 1px solid #f1f5f9;
+}
+
+.pvm-total-amount { font-size: 2rem; font-weight: 900; color: #0f172a; }
+
+.pvm-btn-confirm {
+  background: #4f46e5; color: #fff; border: none; padding: 1.2rem 2.5rem;
+  border-radius: 18px; font-weight: 700; font-size: 1rem; cursor: pointer;
+  transition: 0.3s;
+}
+
+.pvm-btn-confirm:hover { background: #4338ca; transform: translateY(-3px); }
+
+@keyframes modalScale {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
