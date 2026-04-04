@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import CheckoutModal from '../components/CheckoutModal'; // Importamos el modal
 import '../styles/Cart.css';
 
