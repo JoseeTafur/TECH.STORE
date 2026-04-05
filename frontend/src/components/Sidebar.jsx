@@ -24,6 +24,10 @@ const Sidebar = () => {
           <span className="nav-icon">👥</span> Usuarios
         </Link>
 
+        <Link to="/admin/comprobantes" className={`nav-item ${isActive('/admin/comprobantes')}`}>
+          <span className="nav-icon">🧾</span> Comprobantes
+        </Link>
+
         <p className="nav-section-title" style={{ marginTop: '20px' }}>SISTEMA</p>
         
         <Link to="/" className="nav-item">

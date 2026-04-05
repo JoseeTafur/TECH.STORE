@@ -15,6 +15,7 @@ import Profile from './pages/Profile';
 import Cart from './pages/Cart';
 import MyPurchases from './pages/MyPurchases';
 import Products from './pages/Products';
+import AdminSales from './pages/AdminSales';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route index element={<AdminProducts />} /> 
           <Route path="productos" element={<AdminProducts />} />
           <Route path="usuarios" element={<AdminUsers />} /> 
+          <Route path="comprobantes" element={<AdminSales />} /> 
         </Route>
       </Routes>
     </Router>

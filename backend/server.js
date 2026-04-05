@@ -13,6 +13,10 @@ const userRoutes = require('./routes/userRoutes');
 // Nueva ruta para evitar el desorden en server.js
 const consultarRoutes = require('./routes/consultarRoutes'); 
 
+const invoicesRoutes = require('./routes/invoicesRoutes'); 
+const configRoutes = require('./routes/configRoutes'); 
+const checkoutRoutes = require('./routes/checkoutRoutes'); 
+
 dotenv.config();
 
 // Lógica de carpetas (Se mantiene intacta como pediste)
@@ -43,6 +47,10 @@ app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
 // Registramos la nueva ruta de consulta
 app.use('/api/consultar', consultarRoutes); 
+
+app.use('/api/invoices', invoicesRoutes);
+app.use('/api/config', configRoutes);
+app.use('/api/checkout', checkoutRoutes);
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 

@@ -54,24 +54,38 @@ const CheckoutModal = ({ isOpen, onClose, cartItems, subtotalBase, igv, onConfir
   const costoEnvio = shippingMethod === 'tienda' ? 0 : (subtotalBase > 5000 ? 0 : distObj.costo);
   const totalFinal = subtotalBase + igv + costoEnvio;
 
-  const handleFinish = (e) => {
+  const handleFinish = async (e) => {
     e.preventDefault();
+
+    const tipo = tipoComprobante === '01' ? 'boleta' : 'factura';
+    const { serie, correlativo } = await axios.get(`http://localhost:3000/api/config/${tipo}`)
+    .then(res => ({ serie: res.data.serie, correlativo: String(res.data.correlativo) }))
+    .catch(() => ({ serie: "N001", correlativo: "0" }));
+
     onConfirm({
       cartItems,
       cliente: {
         numDoc: documento,
         nombre: nombreCliente,
-        tipoDoc: tipoComprobante,
+        tipoDoc: documento.length === 11 ? "6" : "1",
         direccion: shippingMethod === 'domicilio' ? `${direccion} - ${distObj.nombre}` : 'Recojo en Tienda'
       },
-      logistica: {
-        metodo: shippingMethod,
-        sucursal: shippingMethod === 'tienda' ? SUCURSALES.find(s => s.id === sucursalSelected).nombre : null
+      comprobante: {
+        tipoOperacion: "0101",
+        tipoDoc: tipoComprobante,
+        serie: serie,
+        correlativo: correlativo,
+        tipoPago: 'Contado',
+        observacion: ""
       },
-      pago: {
-        metodo: paymentMethod,
-        total: totalFinal
-      }
+      // logistica: {
+      //   metodo: shippingMethod,
+      //   sucursal: shippingMethod === 'tienda' ? SUCURSALES.find(s => s.id === sucursalSelected).nombre : null
+      // },
+      // pago: {
+      //   metodo: paymentMethod,
+      //   total: totalFinal
+      // }
     });
   };
 

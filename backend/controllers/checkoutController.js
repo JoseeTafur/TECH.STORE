@@ -1,24 +1,25 @@
 const axios = require('axios');
 
 const emitirComprobante = async (req, res) => {
-  const { cartItems, cliente, subtotal, igv, total } = req.body;
+  const { cliente, comprobante, cartItems } = req.body;
+  // console.log(`Body: ${JSON.stringify(req.body, null, 2)} `);
 
   const dataMiApi = {
-    "claveSecreta": process.env.MIAPI_CLAVE_SECRETA,
+    "claveSecreta": process.env.MIAPI_SECRET_KEY,
     "comprobante": {
-      "tipoOperacion": "0101",
-      "tipoDoc": cliente.tipoDoc, 
-      "serie": cliente.tipoDoc === '01' ? 'F001' : 'B001',
-      "correlativo": Date.now().toString().slice(-6), 
+      "tipoOperacion": comprobante.tipoOperacion,
+      "tipoDoc": comprobante.tipoDoc, 
+      "serie": comprobante.serie,
+      "correlativo": comprobante.correlativo,
       "fechaEmision": new Date().toISOString().split('T')[0],
+      "horaEmision": new Date().toTimeString().split(' ')[0],
       "tipoMoneda": "PEN",
-      "total": total,
-      "mtoIGV": igv,
-      "mtoOperGravadas": subtotal,
-      "totalTexto": `SON ${total.toFixed(2)} SOLES`
+      "tipoPago": comprobante.tipoPago,
+      "observacion": comprobante.observacion || "",
     },
     "cliente": {
-      "tipoDoc": cliente.tipoDoc === '01' ? "6" : "1",
+      "codigoPais": "PE",
+      "tipoDoc": cliente.numDoc.length === 11 ? "6" : "1",
       "numDoc": cliente.numDoc,
       "rznSocial": cliente.nombre,
       "direccion": cliente.direccion || "Chiclayo, Lambayeque"
@@ -29,33 +30,76 @@ const emitirComprobante = async (req, res) => {
       const igvUnitario = precioUnitario - valorUnitario;
 
       return {
-        "codProducto": item._id.substring(0, 5),
+        "codProducto": item.codProducto,
         "descripcion": `${item.marca} ${item.nombre}`,
+        "unidad": "NIU",
         "cantidad": item.quantity,
+        "mtoBaseIgv": valorUnitario * item.quantity,
         "mtoValorUnitario": valorUnitario,
         "mtoPrecioUnitario": precioUnitario,
-        "mtoBaseIgv": valorUnitario * item.quantity,
-        "igv": igvUnitario * item.quantity,
-        "totalItem": precioUnitario * item.quantity,
         "codeAfect": "10", 
-        "igvPorcent": 18
+        "igvPorcent": 18,
+        "igv": igvUnitario * item.quantity,
+        // "totalItem": precioUnitario * item.quantity,
       };
-    })
+    }),
   };
 
+  // console.log(dataMiApi);
+
   try {
-    const response = await axios.post(`${process.env.MIAPI_BASE_URL}/emision`, dataMiApi, {
+    const response = await axios.post('https://miapi.cloud/apifact/invoice/create', dataMiApi, {
       headers: {
         'Authorization': `Bearer ${process.env.MIAPI_BEARER_TOKEN}`,
         'Accept': 'application/json'
       }
     });
+
+    const cleanJSON = (d) => {
+      const firstBrace = d.indexOf("{");
+      const lastBrace = d.lastIndexOf("}");
+
+      if (firstBrace !== -1 && lastBrace !== -1) {
+        const jsonString = d.slice(firstBrace, lastBrace + 1); // extrae solo el JSON
+        try {
+          const clean = JSON.parse(jsonString);
+          return clean;
+        } catch (err) {
+          console.error("JSON inválido después de limpiar:", err);
+        }
+      } else {
+        console.error("No se encontró JSON en la respuesta de MiAPI");
+      }
+    };
+
+    const apiRes = cleanJSON(typeof response.data === "string" 
+      ? response.data 
+      : JSON.stringify(response.data));
+
+      // console.log("Datos: ", apiRes.respuesta);
     
-    if (response.data.success) {
+
+    if (apiRes) {
       return res.status(200).json({
         success: true,
         msg: "Venta procesada con éxito",
-        links: response.data.links
+        data: {
+          codigo: `${dataMiApi.comprobante.serie}-${dataMiApi.comprobante.correlativo.toString().padStart(8, "0")}`,
+          fecha: `${dataMiApi.comprobante.fechaEmision} ${dataMiApi.comprobante.horaEmision}`,
+          medioPago: dataMiApi.comprobante.tipoPago,
+          cliente: {
+            nombre: dataMiApi.cliente.rznSocial,
+            documento: dataMiApi.cliente.numDoc,
+            direccion: dataMiApi.cliente.direccion
+          },
+          links: {
+            "xml-sin-firmar": apiRes.respuesta["xml-sin-firmar"],
+            "xml-firmado": apiRes.respuesta["xml-firmado"],
+            "pdf-a4": apiRes.respuesta["pdf-a4"],
+            "pdf-ticket": apiRes.respuesta["pdf-ticket"],
+          },
+          situacion: "Canjeado"
+        }
       });
     }
     
@@ -66,4 +110,8 @@ const emitirComprobante = async (req, res) => {
   }
 };
 
-module.exports = { emitirComprobante };
+const msg = async (req, res) => {
+  return res.status(200).json({msg: "Funciona"});
+}
+
+module.exports = { emitirComprobante, msg };

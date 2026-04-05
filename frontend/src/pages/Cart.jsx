@@ -48,19 +48,25 @@ const Cart = () => {
         // Obtenemos el ID del usuario logueado (esto debería venir de tu AuthContext o JWT)
         const user = JSON.parse(localStorage.getItem('user')); 
         
-        const dataFinal = {
-            ...orderData,
-            userId: user?._id || "654321..." // ID de prueba si no hay login
-        };
+        // const dataFinal = {
+        //     ...orderData,
+        //     userId: user?._id || "654321..." // ID de prueba si no hay login
+        // };
 
-        const res = await axios.post('http://localhost:3000/api/orders', dataFinal);
+        // const res = await axios.post('http://localhost:3000/api/checkout', dataFinal);
+        // console.log(orderData);
+        const res = await axios.post('http://localhost:3000/api/checkout', orderData, 
+          {headers: { 'Content-Type': 'application/json' }}
+        );
         
         if (res.data.success) {
-            alert(`🎉 ${res.data.message}\nTotal: S/ ${res.data.total}`);
-            
-            // Limpiar carrito y redirigir
+          await axios.post('http://localhost:3000/api/invoices', res.data.data);
+          // alert(JSON.stringify(res.data.data))
+          alert("Operación exitosa");
+          // Limpiar carrito y redirigir
             localStorage.removeItem('cart');
-            window.location.href = "/perfil/mis-compras"; 
+            // window.location.href = "/perfil/mis-compras";
+            window.location.href = "/productos";
         }
     } catch (err) {
       console.error(err);
