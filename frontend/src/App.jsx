@@ -16,6 +16,7 @@ import Cart from './pages/Cart';
 import MyPurchases from './pages/MyPurchases';
 import Products from './pages/Products';
 import AdminSales from './pages/AdminSales';
+import AdminReceipts from './pages/AdminReceipts';
 
 function App() {
   return (
@@ -37,7 +38,8 @@ function App() {
           <Route index element={<AdminProducts />} /> 
           <Route path="productos" element={<AdminProducts />} />
           <Route path="usuarios" element={<AdminUsers />} /> 
-          <Route path="comprobantes" element={<AdminSales />} /> 
+          <Route path="ventas" element={<AdminSales />} /> 
+          <Route path="comprobantes" element={<AdminReceipts />} /> 
         </Route>
       </Routes>
     </Router>
