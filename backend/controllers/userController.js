@@ -74,6 +74,9 @@ exports.updateUserProfile = async (req, res) => {
         res.status(500).json({ message: "Error interno del servidor", error: error.message });
     }
 };
+
+// Mis cambios fork
+
 // @desc    Actualizar rol de usuario (Solo Admin)
 exports.updateUserRole = async (req, res) => {
     try {
