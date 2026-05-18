@@ -56,6 +56,12 @@ const Home = () => {
           <Link to="/productos" className="view-all">Ver todo el catálogo</Link>
         </div>
 
+        {/* 
+        
+          Mis cambios locales
+        
+        */}
+
         <div className="main-products-grid">
           {products.slice(0, 8).map(p => (
             <article key={p._id} className="pro-card">
